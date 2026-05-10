@@ -2,141 +2,244 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Visor de Parejas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de Parejas | Ministración</title>
+  <!-- Fuente moderna desde Google Fonts -->
+  <link href="https://googleapis.com" rel="stylesheet">
   
   <style>
+    :root {
+      --primary-color: #2c3e50;
+      --accent-color: #6fb98f;
+      --bg-color: #f8f9fa;
+      --card-bg: #ffffff;
+      --text-muted: #6c757d;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      padding: 20px;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-color);
+      color: var(--primary-color);
+      margin: 0;
+      line-height: 1.6;
     }
-    .portada {
+
+    /* Contenedor Principal */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* Hero Section / Portada */
+    .hero {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 50px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .hero img {
       width: 100%;
-      text-align:center;
-      margin-bottom: 20px;
+      height: 400px;
+      object-fit: cover; /* Ajusta la imagen sin deformarla */
+      display: block;
     }
-    .portada img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 2px 30px rgba(0,0,0,0.2);
+
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 40px;
+      text-align: center;
     }
+
     h1 {
-      width: 100%;
-      text-align: center;
-      color: #333;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin: 0 0 15px;
     }
-    h2{
-      width: 100%;
-      text-align: center;
-      color: #555;
+
+    .quote {
+      font-size: 1.1rem;
       font-style: italic;
+      max-width: 800px;
+      margin: 0 auto;
+      opacity: 0.9;
     }
+
+    /* Grid de Tarjetas */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 25px;
+      border-top: 5px solid var(--accent-color);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-top: 0;
+      color: var(--primary-color);
+    }
+
+    .family-list {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .family-item {
+      display: flex;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .family-item::before {
+      content: "🏠";
+      margin-right: 10px;
+      font-size: 0.8rem;
+    }
+
+    /* Sección de Video */
+    .video-section {
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      margin-bottom: 50px;
+    }
+
     .video-container {
       position: relative;
-      width: 100%;
-      padding-bottom: 46.25%; /* 16:9 Aspect Ratio */
-      margin-top: 20px;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
     }
+
     .video-container iframe {
       position: absolute;
       top: 0;
-      left: 10%;
-      width: 80%;
-      height: 80%;
-      border: 0;
-    }
-    .card {
-      background: #cff38c;
-      border-radius: 10px;
-      box-shadow: 0 2px 30px rgba(0,0,0,0.2);
-      width: 250px;
-      padding: 15px;
-      text-align: center;
-    }
-    .card img {
+      left: 0;
       width: 100%;
-      border-radius: 10px;
+      height: 100%;
     }
-    .card h3 {
-      margin: 10px 0 5px;
+
+    /* Footer / Ayuda */
+    .footer-action {
+      text-align: center;
+      padding: 40px;
     }
-    .card p {
-      margin: 5px 0;
+
+    .btn {
+      background: var(--accent-color);
+      color: white;
+      padding: 12px 30px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background 0.3s;
+      display: inline-block;
     }
-    .estado {
-      font-weight: bold;
-      color: green;
+
+    .btn:hover {
+      background: #5aa37a;
     }
-   
-    
+
   </style>
 </head>
 <body>
-  <div class="portada">
-    <img src="image/shepherd_sheep_grass_trees.jpeg" alt="pastor">
-  </div>
-  <h1>Hermanos Ministrantes</h1>
 
+  <div class="container">
     
-  <h2>“Trabajemos hombro a hombro con el Señor de la viña, dando al Dios y Padre de todos nosotros una mano de ayuda con Su asombrosa tarea de contestar oraciones, dar consuelo, secar lágrimas y fortalecer las rodillas débiles”</h2>
+    <!-- Portada con Texto Encima -->
+    <header class="hero">
+      <img src="image/shepherd_sheep_grass_trees.jpeg" alt="Ministración">
+      <div class="hero-overlay">
+        <h1>Hermanos Ministrantes</h1>
+        <p class="quote">“Trabajemos hombro a hombro con el Señor de la viña... dando una mano de ayuda con Su asombrosa tarea de contestar oraciones y dar consuelo”.</p>
+      </div>
+    </header>
 
-  <div class="card">
-    
-    <h3>Baez Lezcano, Ramon  y Varas,Sergio </h3>
-    <p>Familia: Cañette, Monica </p>
-    <p> Familia: Simbalay </p>
-  </div>  
+    <!-- Lista de Parejas -->
+    <section class="grid">
+      <div class="card">
+        <h3>Baez Lezcano, R. & Varas, S.</h3>
+        <div class="family-list">
+          <div class="family-item">Familia: Cañette, Monica</div>
+          <div class="family-item">Familia: Simbalay</div>
+        </div>
+      </div>
 
-  <div class="card">
-    
-    <h3>Alcaraz,Juan Jose y Etchebest,Matias </h3>
-    <p>Familia: Gadea </p>
-    <p>Familia: Salinas, Susana</p>
-  </div> 
+      <div class="card">
+        <h3>Alcaraz, J.J. & Etchebest, M.</h3>
+        <div class="family-list">
+          <div class="family-item">Familia: Gadea</div>
+          <div class="family-item">Familia: Salinas, Susana</div>
+        </div>
+      </div>
 
-  <div class="card">
-    
-    <h3>Porri, Lautaro y Videla, Oscar</h3>
-    <p>Familia: Baez Lezcano</p>
-    <p>Familia: Nieva </p>
-  </div>
+      <div class="card">
+        <h3>Porri, L. & Videla, O.</h3>
+        <div class="family-list">
+          <div class="family-item">Familia: Baez Lezcano</div>
+          <div class="family-item">Familia: Nieva</div>
+        </div>
+      </div>
 
-  <div class="card">
-   
-    <h3>Alcaraz Axel  y Videla, Ezequiel</h3>
-    <p>Familia: Bustos, Gaston Ezequiel</p>
-    <p>Familia: Cejas, Nestor</p>
-   
-  </div>
+      <div class="card">
+        <h3>Alcaraz, A. & Videla, E.</h3>
+        <div class="family-list">
+          <div class="family-item">Familia: Bustos, G. E.</div>
+          <div class="family-item">Familia: Cejas, Nestor</div>
+        </div>
+      </div>
 
-  <div class="card">
-   
-    <h3>Moreno Tomas Miguel y Simbalaj Raul</h3>
-    <p>Familia:Luna, Adriana </p>
-    <p>Familia: Trinidad, Jose</p>
-  
-  </div>
+      <div class="card">
+        <h3>Moreno, T. M. & Simbalaj, R.</h3>
+        <div class="family-list">
+          <div class="family-item">Familia: Luna, Adriana</div>
+          <div class="family-item">Familia: Trinidad, Jose</div>
+        </div>
+      </div>
+    </section>
 
-  <div class="video-container">
-    <iframe src="//players.brightcove.net/1241706627001/default_default/index.html?videoId=5765818056001" 
-            allowfullscreen 
-            frameborder="0">
-    </iframe>
-  </div>
-  <div class="ayuda">
-    <h3 >¿Cómo puedo llegar a ser un mejor hermano ministrante?</h3>
-    <p>
-      <a href="https://www.churchofjesuschrist.org/study/youth/learn/ap/building-up-the-church/ministering?lang=spa" target="_blank">
-    Leer el artículo relacionado
+    <!-- Sección Multimedia -->
+    <section class="video-section">
+      <h2 style="text-align:center; margin-bottom: 30px;">Recursos de Inspiración</h2>
+      <div class="video-container">
+        <iframe src="//players.brightcove.net/1241706627001/default_default/index.html?videoId=5765818056001" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- Enlace Final -->
+    <footer class="footer-action">
+      <h3>¿Cómo puedo llegar a ser un mejor hermano ministrante?</h3>
+      <a href="https://www.churchofjesuschrist.org/study/youth/learn/ap/building-up-the-church/ministering?lang=spa" target="_blank" class="btn">
+        Leer el artículo completo
       </a>
-    </p>
-  </div>  
+    </footer>
 
-
+  </div>
 
 </body>
 </html>
