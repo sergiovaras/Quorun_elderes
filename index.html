@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Visor de Parejas | Ministración</title>
-  <!-- Fuente moderna desde Google Fonts -->
   <link href="https://googleapis.com" rel="stylesheet">
   
   <style>
@@ -21,221 +20,192 @@
       background: var(--bg-color);
       color: var(--primary-color);
       margin: 0;
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
-    /* Contenedor Principal */
     .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 20px 15px; /* Menos padding en móviles */
     }
 
-    /* Hero Section / Portada */
+    /* Hero Section Responsivo */
     .hero {
       position: relative;
-      border-radius: 20px;
+      border-radius: 15px;
       overflow: hidden;
-      margin-bottom: 50px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     }
 
     .hero img {
       width: 100%;
-      height: 400px;
-      object-fit: cover; /* Ajusta la imagen sin deformarla */
+      height: 250px; /* Altura reducida para móviles */
+      object-fit: cover;
       display: block;
     }
 
+    /* Gradiente más oscuro para legibilidad en pantallas pequeñas */
     .hero-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
       color: white;
-      padding: 40px;
+      padding: 20px;
       text-align: center;
     }
 
     h1 {
-      font-size: 2.5rem;
+      font-size: 1.6rem; /* Tamaño ajustable */
       font-weight: 600;
-      margin: 0 0 15px;
+      margin: 0 0 8px;
     }
 
     .quote {
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       font-style: italic;
-      max-width: 800px;
-      margin: 0 auto;
       opacity: 0.9;
+      line-height: 1.3;
     }
 
     /* Grid de Tarjetas */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      margin-bottom: 60px;
+      gap: 20px;
+      margin-bottom: 40px;
     }
 
     .card {
       background: var(--card-bg);
-      border-radius: 15px;
-      padding: 25px;
+      border-radius: 12px;
+      padding: 20px;
       border-top: 5px solid var(--accent-color);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
     }
 
     .card h3 {
-      font-size: 1.2rem;
-      margin-top: 0;
-      color: var(--primary-color);
-    }
-
-    .family-list {
-      margin-top: 15px;
-      padding-top: 15px;
-      border-top: 1px solid #eee;
+      font-size: 1.1rem;
+      margin: 0 0 15px 0;
     }
 
     .family-item {
       display: flex;
       align-items: center;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .family-item::before {
-      content: "🏠";
-      margin-right: 10px;
-      font-size: 0.8rem;
-    }
-
-    /* Sección de Video */
+    /* Video Responsivo */
     .video-section {
       background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-      margin-bottom: 50px;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
     }
 
     .video-container {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      padding-bottom: 56.25%;
       height: 0;
-      overflow: hidden;
-      border-radius: 12px;
+      border-radius: 8px;
     }
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Footer / Ayuda */
+    /* Botón adaptable */
     .footer-action {
       text-align: center;
-      padding: 40px;
+      padding: 20px 10px;
     }
 
     .btn {
       background: var(--accent-color);
       color: white;
-      padding: 12px 30px;
+      padding: 15px 25px;
       text-decoration: none;
-      border-radius: 30px;
+      border-radius: 50px;
       font-weight: 600;
-      transition: background 0.3s;
-      display: inline-block;
+      display: block; /* Ancho completo en móvil */
+      text-align: center;
     }
 
-    .btn:hover {
-      background: #5aa37a;
+    /* Ajustes para pantallas más grandes (Tablets/PC) */
+    @media (min-width: 768px) {
+      .hero img { height: 400px; }
+      h1 { font-size: 2.5rem; }
+      .quote { font-size: 1.1rem; }
+      .btn { display: inline-block; }
+      .container { padding: 40px 20px; }
     }
-
   </style>
 </head>
 <body>
 
   <div class="container">
     
-    <!-- Portada con Texto Encima -->
     <header class="hero">
       <img src="image/shepherd_sheep_grass_trees.jpeg" alt="Ministración">
       <div class="hero-overlay">
         <h1>Hermanos Ministrantes</h1>
-        <p class="quote">“Trabajemos hombro a hombro con el Señor de la viña... dando una mano de ayuda con Su asombrosa tarea de contestar oraciones y dar consuelo”.</p>
+        <p class="quote">“Trabajemos hombro a hombro con el Señor de la viña...”</p>
       </div>
     </header>
 
-    <!-- Lista de Parejas -->
     <section class="grid">
       <div class="card">
         <h3>Baez Lezcano, R. & Varas, S.</h3>
         <div class="family-list">
-          <div class="family-item">Familia: Cañette, Monica</div>
-          <div class="family-item">Familia: Simbalay</div>
+          <div class="family-item">🏠 Familia: Cañette, Monica</div>
+          <div class="family-item">🏠 Familia: Simbalay</div>
         </div>
       </div>
 
       <div class="card">
         <h3>Alcaraz, J.J. & Etchebest, M.</h3>
         <div class="family-list">
-          <div class="family-item">Familia: Gadea</div>
-          <div class="family-item">Familia: Salinas, Susana</div>
+          <div class="family-item">🏠 Familia: Gadea</div>
+          <div class="family-item">🏠 Familia: Salinas, Susana</div>
         </div>
       </div>
 
       <div class="card">
         <h3>Porri, L. & Videla, O.</h3>
         <div class="family-list">
-          <div class="family-item">Familia: Baez Lezcano</div>
-          <div class="family-item">Familia: Nieva</div>
+          <div class="family-item">🏠 Familia: Baez Lezcano</div>
+          <div class="family-item">🏠 Familia: Nieva</div>
         </div>
       </div>
 
       <div class="card">
         <h3>Alcaraz, A. & Videla, E.</h3>
         <div class="family-list">
-          <div class="family-item">Familia: Bustos, G. E.</div>
-          <div class="family-item">Familia: Cejas, Nestor</div>
+          <div class="family-item">🏠 Familia: Bustos, G. E.</div>
+          <div class="family-item">🏠 Familia: Cejas, Nestor</div>
         </div>
       </div>
 
       <div class="card">
         <h3>Moreno, T. M. & Simbalaj, R.</h3>
         <div class="family-list">
-          <div class="family-item">Familia: Luna, Adriana</div>
-          <div class="family-item">Familia: Trinidad, Jose</div>
+          <div class="family-item">🏠 Familia: Luna, Adriana</div>
+          <div class="family-item">🏠 Familia: Trinidad, Jose</div>
         </div>
       </div>
     </section>
 
-    <!-- Sección Multimedia -->
     <section class="video-section">
-      <h2 style="text-align:center; margin-bottom: 30px;">Recursos de Inspiración</h2>
+      <h2 style="text-align:center; font-size: 1.3rem;">Recursos de Inspiración</h2>
       <div class="video-container">
         <iframe src="//players.brightcove.net/1241706627001/default_default/index.html?videoId=5765818056001" allowfullscreen></iframe>
       </div>
     </section>
 
-    <!-- Enlace Final -->
     <footer class="footer-action">
-      <h3>¿Cómo puedo llegar a ser un mejor hermano ministrante?</h3>
+      <h3 style="font-size: 1.1rem; margin-bottom: 20px;">¿Cómo puedo llegar a ser un mejor hermano ministrante?</h3>
       <a href="https://www.churchofjesuschrist.org/study/youth/learn/ap/building-up-the-church/ministering?lang=spa" target="_blank" class="btn">
-        Leer el artículo completo
+        Leer el artículo
       </a>
     </footer>
 
